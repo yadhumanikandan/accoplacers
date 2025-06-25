@@ -132,67 +132,67 @@
                 <!-- Full Registration Form -->
                 <div class="form-content active" id="register-form">
                     <form id="registrationForm">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-      </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                        </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required />
-        </div>
-        <div class="form-group">
-          <label for="nationality">Nationality</label>
-          <input type="text" id="nationality" name="nationality" required />
-        </div>
-      </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="nationality">Nationality</label>
+                                <input type="text" id="nationality" name="nationality" required />
+                            </div>
+                        </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="location">Current Location</label>
-          <input type="text" id="location" name="location" required />
-        </div>
-        <div class="form-group">
-          <label for="qualification">Highest Qualification</label>
-          <input type="text" id="qualification" name="qualification" required />
-        </div>
-      </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Current Location</label>
+                                <input type="text" id="location" name="location" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="qualification">Highest Qualification</label>
+                                <input type="text" id="qualification" name="qualification" required />
+                            </div>
+                        </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="experience">Years of Experience</label>
-          <select id="experience" name="experience" required>
-            <option value="">Select</option>
-            <option value="0-1">0-1 years</option>
-            <option value="1-3">1-3 years</option>
-            <option value="3-5">3-5 years</option>
-            <option value="5-10">5-10 years</option>
-            <option value="10+">10+ years</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="role">Preferred Job Role/Industry</label>
-          <input type="text" id="role" name="role" required />
-        </div>
-      </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experience">Years of Experience</label>
+                                <select id="experience" name="experience" required>
+                                    <option value="">Select</option>
+                                    <option value="0-1">0-1 years</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Preferred Job Role/Industry</label>
+                                <input type="text" id="role" name="role" required />
+                            </div>
+                        </div>
 
-      <div class="form-group">
-        <label for="resume">Upload Resume (PDF or DOC)</label>
-        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
-      </div>
+                        <div class="form-group">
+                            <label for="resume">Upload Resume (PDF or DOC)</label>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
+                        </div>
 
-      <div class="form-group text-center">
-        <button type="submit" class="btn" id="submitBtn">Submit Registration</button>
-      </div>
-      <div id="formStatus" class="form-status"></div>
-    </form>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn" id="submitBtn">Submit Registration</button>
+                        </div>
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -293,53 +293,55 @@
     </footer>
 
     <script>
-    const form = document.getElementById('registrationForm');
-    const status = document.getElementById('formStatus');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx8eOPMpojXFqyRvcrED0zfu9qqCLKhXFkJQw5dhu-oVFGYU4FWOX-XSaNfvGUL8PpZ/exec'; // Replace with your deployed Apps Script Web App URL
+        const form = document.getElementById('registrationForm');
+        const status = document.getElementById('formStatus');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx8eOPMpojXFqyRvcrED0zfu9qqCLKhXFkJQw5dhu-oVFGYU4FWOX-XSaNfvGUL8PpZ/exec'; // Replace with your deployed Apps Script Web App URL
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = 'Submitting...';
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = 'Submitting...';
 
-      const formData = new FormData(form);
-      const file = formData.get('resume');
-      const reader = new FileReader();
+            const formData = new FormData(form);
+            const file = formData.get('resume');
+            const reader = new FileReader();
 
-      reader.onload = async function () {
-        const base64String = reader.result.split(',')[1];
+            reader.onload = async function () {
+                const base64String = reader.result.split(',')[1];
 
-        const payload = new URLSearchParams();
-        payload.append('name', formData.get('name'));
-        payload.append('email', formData.get('email'));
-        payload.append('phone', formData.get('phone'));
-        payload.append('nationality', formData.get('nationality'));
-        payload.append('location', formData.get('location'));
-        payload.append('qualification', formData.get('qualification'));
-        payload.append('experience', formData.get('experience'));
-        payload.append('role', formData.get('role'));
-        payload.append('resumeBase64', base64String);
-        payload.append('resumeName', file.name);
-        payload.append('resumeType', file.type);
+                const payload = new URLSearchParams();
+                payload.append('name', formData.get('name'));
+                payload.append('email', formData.get('email'));
+                payload.append('phone', formData.get('phone'));
+                payload.append('nationality', formData.get('nationality'));
+                payload.append('location', formData.get('location'));
+                payload.append('qualification', formData.get('qualification'));
+                payload.append('experience', formData.get('experience'));
+                payload.append('role', formData.get('role'));
+                payload.append('resumeBase64', base64String);
+                payload.append('resumeName', file.name);
+                payload.append('resumeType', file.type);
 
-        try {
-          const response = await fetch(scriptURL, {
-            method: 'POST',
-            body: payload,
-          });
+                try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: payload,
+                });
 
-          const result = await response.json();
-          if (result.status === 'success') {
-            status.textContent = 'Form submitted successfully!';
-            form.reset();
-          } else {
-            status.textContent = 'Error: ' + result.message;
-          }
-        } catch (error) {
-          status.textContent = 'Submission failed: ' + error.message;
-        }
-      };
+                const result = await response.json();
+                if (result.status === 'success') {
+                    status.textContent = 'Form submitted successfully!';
+                    form.reset();
+                } else {
+                    status.textContent = 'Error: ' + result.message;
+                }
+                } catch (error) {
+                status.textContent = 'Submission failed: ' + error.message;
+                }
+            };
 
-      reader.readAsDataURL(file);
-    });
-  </script>
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script src="script.js"></script>
 </body>
