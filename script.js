@@ -88,3 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run on scroll
     window.addEventListener('scroll', animateOnScroll);
 });
+
+document.getElementById('resume').addEventListener('change', function () {
+    const file = this.files[0];
+    const maxSizeMB = 5;
+
+    if (file && file.size > maxSizeMB * 1024 * 1024) {
+        alert('File size exceeds 5MB. Please upload a smaller file.');
+        this.value = ''; // Clear the file input
+    }
+});

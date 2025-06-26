@@ -32,8 +32,8 @@
                 <h1>Your Career in Accounting Starts Here</h1>
                 <p>Accoplacers connects talented accounting, audit, and finance professionals with top employers across the GCC region.</p>
                 <div class="hero-btns">
-                    <a href="#register" class="btn">Register with Us</a>
-                    <a href="#register" class="btn btn-accent">Upload Your Resume</a>
+                    <!-- <a href="#register" class="btn">Register with Us</a> -->
+                    <a href="#register" class="btn btn-accent">Register With Us</a>
                 </div>
             </div>
         </div>
@@ -186,6 +186,7 @@
                         <div class="form-group">
                             <label for="resume">Upload Resume (PDF or DOC)</label>
                             <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
+                            <small style="display:block; margin-top:4px; color:#777;">Maximum file size: 5MB</small>
                         </div>
 
                         <div class="form-group text-center">
@@ -218,7 +219,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="contact-name">Name</label>
                             <input type="text" id="contact-name" name="contact-name" required>
@@ -228,16 +229,17 @@
                             <input type="email" id="contact-email" name="contact-email" required>
                         </div>
                         <div class="form-group">
-                            <label for="contact-message">Message (Optional)</label>
-                            <textarea id="contact-message" name="contact-message"></textarea>
+                            <label for="contact-phone">Phone</label>
+                            <input type="tel" id="contact-phone" name="contact-phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="contact-file">Upload Document (Optional)</label>
-                            <input type="file" id="contact-file" name="contact-file" class="file-input">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="contact-message" required></textarea>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn">Send Message</button>
                         </div>
+                        <div id="contactStatus" class="form-status"></div>
                     </form>
                 </div>
             </div>
@@ -287,7 +289,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Accoplacers. All Rights Reserved.</p>
+                <p style="color: rgba(255, 255, 255, 0.747);">&copy; 2025 Accoplacers. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -342,6 +344,42 @@
             reader.readAsDataURL(file);
         });
     </script>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const contactStatus = document.getElementById('contactStatus');
+        const contactScriptURL = 'https://script.google.com/macros/s/AKfycbwYAfwo7ojFHDWGvXC-Sx2_eVN2AX5SxWVLNhInTi-8QlpkuG9XI4cGvCuNALCxksau/exec'; // <-- Replace this
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            contactStatus.textContent = 'Sending...';
+
+            const formData = new FormData(contactForm);
+            const payload = new URLSearchParams();
+            payload.append('name', formData.get('contact-name'));
+            payload.append('email', formData.get('contact-email'));
+            payload.append('phone', formData.get('contact-phone'));
+            payload.append('message', formData.get('contact-message'));
+
+            try {
+                const response = await fetch(contactScriptURL, {
+                    method: 'POST',
+                    body: payload,
+                });
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    contactStatus.textContent = 'Message sent successfully!';
+                    contactForm.reset();
+                } else {
+                    contactStatus.textContent = 'Error: ' + result.message;
+                }
+            } catch (error) {
+                contactStatus.textContent = 'Failed to send: ' + error.message;
+            }
+        });
+    </script>
+
 
     <script src="script.js"></script>
 </body>
