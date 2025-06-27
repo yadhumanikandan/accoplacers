@@ -211,7 +211,7 @@ nav ul li a:hover::after {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.95)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(135deg, rgba(70, 101, 131, 0.87), rgba(65, 92, 119, 0.815)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -261,6 +261,11 @@ nav ul li a:hover::after {
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: center;
+}
+
+.about-text {
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .about-img {
